@@ -9,5 +9,6 @@
 int main(int argc, char *const* argv)
 {
     //begin main code
+    printf("hello world! \n");
     return 0;
 }
