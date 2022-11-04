@@ -6,20 +6,21 @@
 */
 #include "stdlib.h" 
 #include "stdio.h" 
-
-struct s 
-{
-    int n;
-    struct s *next;
+#define N  10
+#define ri record[i].
+struct score{
+    char sports[100]; //name of sports
+    int athlete; //number of athlete
+    char college[50];
+    int place;
+    float result;
 };
+
+
 int main(int argc, char *const* argv)
 {
     //begin main code
-    struct s a[3] = {10, &a[1], 5, &a[2], 9, '\0'}, *p;
-    p = &a[0];
-    printf("hello world! \n");
-    printf("%d %d", p++->n, ++p->n);
 
-    return 0;
+      return 0;
     
 }
