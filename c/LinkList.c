@@ -283,39 +283,58 @@ LinkList reverse(LinkList l){
 * @Arguments:LinkList
 * @Return: 
 */
-void bsort(LinkList l){//increasing order, with head node
-	LNode *p = l;
-	//exchange node if cur > next
-	if(p->next == NULL)return ;
+void  bsort(LinkList l){//increasing order, with head node
+	//head node will not change, it is good to syn with index
+	
+	if(l->next == NULL)return ;
 
+    LNode *p = l->next;
+	//get the len
+	int len = 0;
 	while(p){
-		//exchange
-		LNode *pre = p;
-		LNode *cur = p->next;
-		LNode *nxt = cur->next;
-		while(nxt && cur->val > nxt->val){
-			cur->next = nxt->next;
-			nxt->next = cur;
-			pre->next = nxt;
-
-			cur = cur->next;
-			nxt = nxt->next;
-			pre = pre->next;
-		}
-		//
+		len++;
 		p = p->next;
 	}
-
-
+	//2 loop
+	int ocnt = 0;
+	while(ocnt < len-1){//out loop i is unused
+		LNode *pre = l;
+		int icnt = 0;
+		while(icnt < len-1-ocnt){
+			LNode *cur = pre->next;
+			//exchange logic:
+			if(cur->val > cur->next->val){
+				LNode *tmp = cur->next;
+				cur->next = tmp->next;
+				tmp->next = cur;
+				pre->next = tmp;
+			}
+			//
+			pre = pre->next;
+			icnt++;
+		}
+		ocnt++;
+	}
 }
 
 int main(int argc, char *const* argv)
 {
     //begin main code
 	LinkList l = TailInsert();
-//	bsort(l);
-	LNode *p = l;
-	while(p)printf("%d ", p->val);
+	LNode *p = l->next;
+	while(p){
+		printf("%d ", p->val);
+		p = p->next;
+	}
+
+	printf("ready to sort\n");
+	bsort(l);
+	p = l->next;
+	while(p){
+		printf("%d ", p->val);
+		p = p->next;
+	}
+
 	free(l);
     return 0;
 }
