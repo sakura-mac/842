@@ -90,6 +90,7 @@ void LevelTraverse(Tree t){
 void InOrderTraverseByStack(Tree t){
 	stack *st = Stack();
 	TNode *p = t;
+	//p judgement is for NULL node
 	while(p || st->top != -1){
 		if(p){
 			//if preorder traverse, print here
@@ -108,12 +109,53 @@ void InOrderTraverseByStack(Tree t){
 
 /*
 * @Description: find all the seaquence(from the root) if vals sum up to k 
-* @Arguments:
+* @Arguments: Tree, int
 * @Return: 
 */
+int track[10][10];//assuming that is enough for store the result
+int kr = 0;
 int trace[10];
-void backtrace(Tree t){
+int ti = 0;
+void backtrace(Tree t, int k){
+	//add in trace(judge in next process stack), in traverse, withdraw the trace
+	if(k == 0){
+		for(int i = 0; i < ti; i++){
+			track[kr][i] = trace[i];
+		}
+		kr++;
+		return;
+	}
+	
+	//3 steps
+	if(t->lchild){
+		int lval = t->lchild->val;
+		trace[ti++] = lval;
+		k -= lval;
+		backtrace(t->lchild, k);
+		k += lval;
+		ti--;
+	}
+	if(t->rchild){
+		int rval = t->rchild->val;
+		trace[ti++] = rval;
+		k -= rval;
+		backtrace(t->rchild, k);
+		k += rval;
+		ti--;
+	}	
+}
+void Backtrace(Tree t, int k){
+	//backtrace 预处理
+	trace[ti++] = t->val;
 
+	backtrace(t, k-t->val);
+	printf("bakctrace is done!\n");
+	for(int i = 0; i < kr; ++i){
+		for(int j = 0; j < 10; ++j){
+			printf("%d", track[i][j]);
+		}
+		printf("\n");
+	}
 }
 /*
 * @Description: find the father of specific node
@@ -132,7 +174,7 @@ TNode *FF(Tree t, TNode *node){
 	return father;
 }
 /*
-* @Description: find all parents of specific node
+* @Description: find all ancestors of specific node
 * @Arguments:Tree, int 
 * @Return: 
 */
@@ -146,6 +188,50 @@ int printAncestor(Tree t, int x){
 	}
 
 	return 0;
+}
+
+/*
+* @Description: find all ancestors of specific node index 
+* @Arguments: int *,  int
+* @Return: 
+*/
+void printAncestorStoredInArr(int *t, int indexX){
+	int *p = t;
+	//assuming that root index from 1, lchild = 2*index, rchild = lchild+1,then find the father is easy
+	int index = indexX / 2; 
+	while(index){
+		printf("%d", *(p+index));
+		index /= 2;
+
+	}
+	//if not knowing the index of specifc node,you need to find the index first by traverse the tree func below
+}
+
+/*
+* @Description: traverse the tree if arr stored
+* @Arguments: int *, int, int
+* @Return: 
+*/
+int traverseStoredInArr(int *t, int x, int len){
+	int index = 1;	
+	stack *st = Stack();
+
+	while(index < len || st->top != -1){
+		if(index < len){
+			printf("%d", t[index]);
+			if(t[index] == x){
+				return index;
+			}
+			Push(st, (void *)index);
+			index *= 2;
+		}else{
+			int nindex = (int)Pop(st);
+			index = nindex * 2 + 1;
+		}
+
+	}
+	return -1;
+
 }
 /*
 * @Description: find the common father of two nodes
@@ -171,12 +257,16 @@ int CommonFather(Tree l, TNode *n1, TNode *n2){
 * @Arguments:
 * @Return: 
 */
+
+
 int main(int argc, char *const* argv)
 {
     //begin main code
 	Tree t = BiTree();
 //	InOrderTraverse(t);
 	//LevelTraverse(t);
-	InOrderTraverseByStack(t);
+//	InOrderTraverseByStack(t);
+	
+	Backtrace(t, 5);
     return 0;
 }

@@ -237,7 +237,7 @@ LinkList merge2L(LinkList l1, LinkList l2){
 	LNode *p2 = l2;
 	if(l1 == NULL && l2 == NULL)return NULL;
 
-	LNode *node;
+	LNode *node = createNode();
 	LNode *p = node;
 	while(p1 && p2){
 		LNode *nnode = createNode(); 

@@ -44,7 +44,7 @@ queue *Queue(){
 * @Return: 
 */
 void *Pop(stack *st){
-	void *ret;
+	void *ret = 0;
 	if(st->top == -1){
 		printf("the stack is empty!\n"); 
 	}
@@ -68,7 +68,7 @@ void  Push(stack *st, void *val){
 */
 
 void *DeQueue(queue *q){
-	void *ret;
+	void *ret = 0;
 	//[)
 	if(q->front == q->near)printf("the queue is empty!\n");
 	else{
