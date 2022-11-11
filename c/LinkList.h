@@ -64,7 +64,20 @@ LinkList TailInsert(){
 }
 
 /*
-* @Description: search LinkList in forward order
+* @Description: print LinkList in order
+* @Arguments:
+* @Return: 
+*/
+void printLinkList(LinkList l){
+	LNode *p = l->next;
+	while(p){
+		printf("%d ", p->val);
+		p = p->next;
+	}
+	printf("\n");
+}
+/*
+* @Description: search LinkList in order
 * @Arguments: LinkList, int
 * @Return: 1 or 0 
 */
@@ -78,7 +91,7 @@ int SearchByForward(LinkList l, int val){
 }
 
 /*
-* @Description: print LinkList in backward order
+* @Description: print LinkList in reversed order
 * @Arguments: LinkList
 * @Return: 
 */
@@ -315,27 +328,5 @@ void  bsort(LinkList l){//increasing order, with head node
 		}
 		ocnt++;
 	}
-}
-
-int main(int argc, char *const* argv)
-{
-    //begin main code
-	LinkList l = TailInsert();
-	LNode *p = l->next;
-	while(p){
-		printf("%d ", p->val);
-		p = p->next;
-	}
-
-	printf("ready to sort\n");
-	bsort(l);
-	p = l->next;
-	while(p){
-		printf("%d ", p->val);
-		p = p->next;
-	}
-
-	free(l);
-    return 0;
 }
 

@@ -1,3 +1,4 @@
+#pragma once
 /*
 * coding = utf-8
 * @Author : Khalil Chen * @Created Time : 2022-11-01 20:55:07
@@ -34,7 +35,7 @@ void insert(Tree t, TNode *f, int d,int val){
 	else insert(t->rchild, t, 1, val);
 	
 }
-Tree BiTree(){
+Tree ConstructBiTree(){
 	//没有虚拟头节点，所以只能多写
 	Tree t = (TNode *)malloc(sizeof(TNode));
 	int number;
@@ -59,7 +60,7 @@ void InOrderTraverse(Tree t){
 	if(t == NULL)return;
 	//if preTraverse, pirnt here
 	InOrderTraverse(t->lchild);
-	printf("%d",t->val);
+	printf("%d ",t->val);
 	InOrderTraverse(t->rchild);
 	//if PostTraverse, pirnt here
 }
@@ -259,14 +260,12 @@ int CommonFather(Tree l, TNode *n1, TNode *n2){
 */
 
 
-int main(int argc, char *const* argv)
-{
-    //begin main code
-	Tree t = BiTree();
-//	InOrderTraverse(t);
-	//LevelTraverse(t);
-//	InOrderTraverseByStack(t);
-	
-	Backtrace(t, 5);
-    return 0;
+/*
+* @Description: pirnt BiTree inorder
+* @Arguments:
+* @Return: 
+*/
+void printBiTree(Tree t){
+	InOrderTraverse(t);
+	printf("\n");
 }

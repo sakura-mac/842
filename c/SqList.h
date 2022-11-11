@@ -6,7 +6,6 @@
 */
 #include "stdlib.h" 
 #include "stdio.h" 
-
 /*
 * @Description: defination of SqList
 * @Arguments:
@@ -81,7 +80,8 @@ void swap(SqList l, int i, int j){
 	l->val[j] = tmp;
 
 }
-void SortOddEven(SqList l){
+void SortByBipolar(SqList l){
+	//odd numbers ahead of even numbers
 	int po, pe;
 	po = pe = 0;
 	//find the even and odd index, swap
@@ -120,17 +120,6 @@ void BSearch(SqList list, int k){
 	if(l == list->len || list->val[l] != k)printf("not found the k!\n");
 	else printf("%d", l);
 
-}
-void printSqList(SqList);
-int main(int argc, char *const* argv)
-{
-
-    //begin main code
-	SqList l = ConstructSqList();
-	printSqList(l);
-	SortOddEven(l);
-	printSqList(l);
-    return 0;
 }
 void printSqList(SqList l){
 	for(int i = 0; i < l->len; ++i)printf("%d", l->val[i]);
