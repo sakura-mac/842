@@ -70,15 +70,65 @@ void InsertSqList(SqList l, int index, int e){
 	l->len++;
 }
 
+/*
+* @Description: sort the list (odd numbers are ahead of even numbers)
+* @Arguments: SqList
+* @Return: 
+*/
+void swap(SqList l, int i, int j){
+	int tmp = l->val[i];
+	l->val[i] = l->val[j];
+	l->val[j] = tmp;
+
+}
+void SortOddEven(SqList l){
+	int po, pe;
+	po = pe = 0;
+	//find the even and odd index, swap
+	while(1){
+		while(pe < l->len && l->val[pe] % 2 != 0)pe++;
+		while(po < l->len && l->val[po] % 2 == 0)po++;
+		if(pe == l->len || po == l->len)break;
+		if(pe < po){
+			swap(l, po, pe);
+		}else{
+			int tmp = po;
+			po = pe;
+			pe = tmp;
+		}
+		po++;pe++;
+	}
+
+}
+
+/*
+* @Description: find index of given k by b search
+* @Arguments: SqList, int 
+* @Return: 
+*/
+void BSearch(SqList list, int k){
+	//[)
+	int l = 0;
+	int r = list->len;
+
+	while(l < r){
+		//left tendency,need to push right
+		int mid = l + (r-l)/2;
+		if(list->val[mid] >= k)r = mid;
+		else l = mid+1;
+	}
+	if(l == list->len || list->val[l] != k)printf("not found the k!\n");
+	else printf("%d", l);
+
+}
 void printSqList(SqList);
 int main(int argc, char *const* argv)
 {
+
     //begin main code
 	SqList l = ConstructSqList();
 	printSqList(l);
-	InsertSqList(l, 0, 9);
-	printSqList(l);
-	RemoveSqList(l, 9);
+	SortOddEven(l);
 	printSqList(l);
     return 0;
 }
