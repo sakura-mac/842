@@ -3,31 +3,29 @@
 * @Author : Khalil Chen 
 * @Created Time : 2022-11-02 20:34:11 
 * @Description : 
-*/
+*/ 
 #include "stdlib.h" 
 #include "stdio.h" 
 #include <math.h>
-#include "BiTree.h"
 #include "LinkList.h"
 #include "Sort.h"
 #include "SqList.h"
-
+//#include "Graph.h"
+#include "BiTree.h"
+#define PL printf("\n");
 struct str1{
 	char c[5];
 	char *s;
-
 };
 void LinkListTest();
 void SqListTest();
 void BiTreeTest();
-void GraphTest();
+//void GraphTest();
 int main(int argc, char *const* argv)
-{
-    //begin main code
+{ //begin main code
 	//LinkList();
 	//SqListTest();
 	//BiTreeTest();
-	//GraphTest();
     return 0;
 }
 
@@ -37,8 +35,7 @@ void LinkListTest(){
 	printLinkList(l);
 	//test function
 	bsort(l); 
-	//pirnt the result
-	printLinkList(l);
+	//pirnt the result printLinkList(l);
 	printf("Test LinkList finished:---------------\n");
 
 }
@@ -61,7 +58,21 @@ void BiTreeTest(){
 	//pirnt the result
 	printf("Test BiTree finished:---------------\n");
 }
-void GraphTest(){
-
-}
+/*void GraphTest(){
+	printf("Test Graph function:---------------\n");
+	Graph g1 = ConstructALGraph();
+	Graph g2 = (Graph)malloc(sizeof(ALGraph)); 
+	printf("    print g1:\n");
+	printGraph(g1);
+	PL
+	//test function
+	ReverseAdj(g1, g2);
+	//pirnt the result
+	printf("\n    print g1g2:\n");
+	printGraph(g1);
+	PL
+	printGraph(g2);
+	PL
+	printf("Test Graph finished:---------------\n");
+}*/
 

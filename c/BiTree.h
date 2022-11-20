@@ -1,16 +1,15 @@
-#pragma once
 /*
 * coding = utf-8
 * @Author : Khalil Chen * @Created Time : 2022-11-01 20:55:07
 * @Description : 
-*/ #include "stdlib.h" 
+*/
+#include "stdlib.h" 
 #include "stdio.h" 
-#include "S2Q.h" 
+#include "S2Q.h"
 /*
 * @Description: defination of tree
 * @Arguments:
-* @Return: 
-*/
+* @Return: */
 typedef struct TNode{
 	int val;
 	struct TNode *lchild;

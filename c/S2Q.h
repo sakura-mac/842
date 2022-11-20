@@ -88,3 +88,4 @@ void InQueue(queue *q, void *val){
 		q->near = (q->near+1)%Maxsize;
 	}
 }
+
