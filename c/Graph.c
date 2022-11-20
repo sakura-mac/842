@@ -145,6 +145,33 @@ void Dtraverse(Graph g){
 }
 
 /*
+* @Description: DFS of Graph by stack
+* @Arguments: Graph, int
+* @Return: 
+*/
+void DFSByStack(Graph g, int i){
+	//like BiTree traverse
+	stack *st = Stack();
+	ArcNode *p = g->verts[i].firstarc;
+	visited[i] = 1;
+
+	while(p || st->top != -1){
+		if(p){
+			if(!visited[p->val]){
+				Push(st, (void*)p);
+				visited[p->val] = 1;
+				p = g->verts[p->val].firstarc; 
+			}else{
+				p = p->next;
+			}
+		}else{
+			p = Pop(st);
+			p = p->next;
+		}
+	}
+}
+
+/*
 * @Description: 求连通分量
 * @Arguments: Graph
 * @Return: int
@@ -153,10 +180,11 @@ int LinkCnt(Graph g){
 	int lcnt = 0;
 	for(int i = 0; i < g->vcnt; ++i){
 		if(!visited[i]){
-			DFS(g, i);
+			DFSByStack(g, i);
 			lcnt++;
 		}
 	}
+	printf("连通分量个数：%d\n", lcnt);
 	ClearVisited();
 	return lcnt;
 }
@@ -181,8 +209,7 @@ void BFS(Graph g, int i){
 			int neighbor = p->val;
 			if(!visited[neighbor]){
 				visited[neighbor] = 1;
-				InQueue(q, (void*)(neighbor));
-			}
+				InQueue(q, (void*)(neighbor)); }
 			p = p->next;
 		}
 	}	
@@ -253,7 +280,7 @@ void GraphTest(){
 	printf("    print g1:\n");
 	printGraph(g1); PL
 	//test function
-	FindShortestRace(g1, 0, 2);
+	LinkCnt(g1);	
 	//pirnt the result
 	/*printf("\n    print g1g2:\n");
 	printGraph(g1);
