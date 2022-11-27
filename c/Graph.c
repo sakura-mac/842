@@ -209,7 +209,8 @@ void BFS(Graph g, int i){
 			int neighbor = p->val;
 			if(!visited[neighbor]){
 				visited[neighbor] = 1;
-				InQueue(q, (void*)(neighbor)); }
+				InQueue(q, (void*)(neighbor));
+			}
 			p = p->next;
 		}
 	}	

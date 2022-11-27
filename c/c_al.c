@@ -20,7 +20,11 @@ struct score{
 int main(int argc, char *const* argv)
 {
     //begin main code
+	for(int i=1; i < 3; ++i){
+		if(i == 1)continue;
+		printf("%d", i);
 
+	}
       return 0;
     
 }
