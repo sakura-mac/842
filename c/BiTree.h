@@ -59,7 +59,6 @@ void InOrderTraverse(Tree t){
 	if(t == NULL)return;
 	//if preTraverse, pirnt here
 	InOrderTraverse(t->lchild);
-	printf("%d ",t->val);
 	InOrderTraverse(t->rchild);
 	//if PostTraverse, pirnt here
 }

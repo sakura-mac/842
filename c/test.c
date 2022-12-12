@@ -23,7 +23,7 @@ void BiTreeTest();
 //void GraphTest();
 int main(int argc, char *const* argv)
 { //begin main code
-	//LinkList();
+	LinkListTest();
 	//SqListTest();
 	//BiTreeTest();
     return 0;
@@ -34,7 +34,8 @@ void LinkListTest(){
 	LinkList l = TailInsert();
 	printLinkList(l);
 	//test function
-	bsort(l); 
+	int val = FLU(l); 
+	printf("val is %d\n", val);
 	//pirnt the result printLinkList(l);
 	printf("Test LinkList finished:---------------\n");
 

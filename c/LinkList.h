@@ -208,22 +208,22 @@ void deleteNode(LinkList l, int index){//index from 0
 */
 int FLU(LinkList l){
 	if(l == NULL)return -1;
-
-	int val = l->val;
-	int len = 1;
-	int cnt = 1;
+	
+	int val = -1;
+	int len = 0;
+	int cnt = 0;
 	//find the longest dup
-	LNode *p = l;
-	while(p->next){
-		if(l->val != l->next->val){
+	LNode *p = l->next;
+	while(p){
+		len++;
+		if(!p->next || p->val != p->next->val){
 			if(len > cnt){
-				val = l->val;
+				val = p->val;
 				cnt = len;
 			}
 			len = 0;
 		}
 		p = p->next;
-		len++;
 	}
 	return val;
 }
