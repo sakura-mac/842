@@ -110,13 +110,39 @@ char *delstring(char *str1, char *str2){
 	}
 	return ret;
 }
+void moveOddsBeforeEvens(int *arr, int size) {
+  int i = 0, j = size - 1;
+
+  while (i < j) {
+    // 如果 arr[i] 是奇数，就继续遍历
+    if (arr[i] % 2 == 1) {
+      i++;
+      continue;
+    }
+
+    // 如果 arr[j] 是偶数，就继续遍历
+    if (arr[j] % 2 == 0) {
+      j--;
+      continue;
+    }
+
+    // 将 arr[i] 和 arr[j] 交换位置
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+}
 int main(int argc, char *const* argv)
 {
     //begin main code
-	char *s1 = "helloFworldFheloFworldlala";
-	char *s2 = "lala";
-	char *ret = delstring(s1, s2);
-	printf("%s", ret);
+	int arr[] = {2, 3, 4, 2, 5, 3, 4, 6, 2, 1, 3};
+	int size = sizeof(arr) / sizeof(arr[0]);
+	moveOddsBeforeEvens(arr, size);
+
+	// 输出执行后的数组
+	for (int i = 0; i < size; i++) {
+  		printf("%d ", arr[i]);
+	}
     return 0;
     
 }
